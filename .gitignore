@@ -12,3 +12,9 @@
 *.zip
 *.xml
 *.mark
+*.txt
+*.xmi
+*.gen
+*.classpath
+.metadata/.plugins/org.eclipse.jdt.core/externalLibsTimeStamps
+.metadata/.mylyn/.taskListIndex/segments_1

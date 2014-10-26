@@ -1,0 +1,14 @@
+*.lock
+*.properties
+*.index
+*.snap
+*.prefs
+*.dat
+*.project
+*.ini
+*.running
+*.log
+*.resources
+*.zip
+*.xml
+*.mark

@@ -16,9 +16,11 @@
 *.xmi
 *.gen
 *.classpath
+bin/
 .metadata/.plugins/org.eclipse.jdt.core/externalLibsTimeStamps
 .metadata/.mylyn/.taskListIndex/segments_1
 .metadata/.plugins/org.eclipse.jdt.core/nonChainingJarsCache
 .metadata/.plugins/org.eclipse.jdt.core/assumedExternalFilesCache
 .metadata/.plugins/org.eclipse.jdt.core/externalFilesCache
 .metadata/.plugins/org.eclipse.jdt.core/invalidArchivesCache
+NoughtsAndCrossesGui/bin/background.png

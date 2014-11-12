@@ -9,11 +9,13 @@ public class ImageLoader {
 
 	public static boolean isLoaded = false;
 	public static BufferedImage[][] images;
-	public static BufferedImage boardBackground, curPlayerBackground, findGameButton, tileBackground, background, playButton;
+	public static BufferedImage boardBackground, titleLogo, curPlayerBackground, buttonBackground, findGameButton, tileBackground, background, playButton;
 
 	public static void loadImages() {
 		images = new BufferedImage[4][1];
 
+		titleLogo = getImage("/titleLogo.png");
+		buttonBackground = getImage("/MenuButton.png");
 		playButton = getImage("/playButton.png");
 		background = getImage("/background.png");
 		curPlayerBackground = getImage("/curPlayerBackground.png");

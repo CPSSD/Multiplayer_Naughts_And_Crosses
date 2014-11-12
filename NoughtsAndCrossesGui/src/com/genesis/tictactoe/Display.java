@@ -46,7 +46,7 @@ public class Display extends Canvas implements Runnable {
 	}
 
 	public void pingServer() {
-		// Server Grabbing Stuff Here...
+		screen.pingServer();
 	}
 
 	public void paint(Graphics g) {

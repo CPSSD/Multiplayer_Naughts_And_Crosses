@@ -1,5 +1,8 @@
 package com.genesis.tictactoe;
+
 import javax.swing.JFrame;
+
+import com.genesis.tictactoe.screen.GameScreen;
 
 public class Frame {
 
@@ -10,6 +13,13 @@ public class Frame {
 	public static Display display;
 
 	public static void main(String[] args) {
+		if (args.length >= 1) {
+			GameScreen.name = args[0];
+		}
+
+		if (args.length >= 2) {
+			GameScreen.gameAddress = args[1];
+		}
 		frame = new JFrame(title);
 		display = new Display();
 

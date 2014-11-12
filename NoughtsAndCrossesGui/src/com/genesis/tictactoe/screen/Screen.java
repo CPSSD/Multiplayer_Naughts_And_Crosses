@@ -18,9 +18,13 @@ public class Screen {
 	public void render() {
 		Display.dbGraphics.drawString("Error: Unknown Screen Type", 64, 64);
 	}
-	
-	public void clickPos(int x, int y){
-		//Deal with Positions being clicked on each screen.
+
+	public void clickPos(int x, int y) {
+		// Deal with Positions being clicked on each screen.
+	}
+
+	public void pingServer() {
+		// Placeholder
 	}
 
 }

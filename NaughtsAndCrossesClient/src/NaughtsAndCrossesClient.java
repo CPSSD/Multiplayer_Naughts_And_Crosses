@@ -22,11 +22,11 @@ public class NaughtsAndCrossesClient {
     public static String gameAddress = "http://cpssd5-web.computing.dcu.ie/TicTacToeWeb/";
 
     public static String newGameAddress = "newGame?";
-    public static String nextAddress = "nextMove?";		//TODO: change to next once jennifer updates server side
+    public static String nextAddress = "next?";		//TODO: change to next once jennifer updates server side
     public static String moveAddress = "move?";
     
     public static void main(String[] args){
-   	 	newGame("Test");
+   	 	newGame("James");
     	print(getBoard());
     	place("1");
     	print(getBoard());
@@ -80,8 +80,7 @@ public class NaughtsAndCrossesClient {
    	   	 	}
    	   	 	else if(JSONWebText.getString("status").equalsIgnoreCase("error")){
    	   	 		print("          NOT BIG SUCCESS!! :(");
-   	   	 		print(String.valueOf(JSONWebText.getInt("code")));
-   	   	 		print(JSONWebText.getString("message"));
+   	   	 		print(String.valueOf(JSONWebText.getInt("code")) + ": " + JSONWebText.getString("message"));
    	   	 	}
    	 	}
     	else{
@@ -89,53 +88,43 @@ public class NaughtsAndCrossesClient {
     	}
     }
     
-    public static void placeAt(int move, int pos){
-   	 if(move < 2){
-   		 move = 0;
-   		 System.out.println("Invalid Move!");
-   	 }
-   	 board.set(pos, move);
-    }
-    
     public static String getEmptyPositions(){
-   	 String out = "";
-   	 for(int i = 0; i < board.size(); i++){
-   		 if(board.get(i) == 0){
-   			 out = out + (i+1) + ", ";
-   		 }
-   	 }
-   	 return out;
+    	String board = getBoard(); //Loads the page once
+		String emptyPositions = "";
+		
+		for(int i = 0; i < board.length(); i++){
+			if(board.substring(i, i+1).equalsIgnoreCase("0")){
+				emptyPositions = emptyPositions + String.valueOf((i-1)/2 + 1) + ",";
+			}
+		}
+		
+    	return emptyPositions.substring(0, emptyPositions.length() - 1);
     }
     
-    public static void printBoard(){
-   	 System.out.println(board.get(0) + " , " + board.get(1) + " , " + board.get(2));
-   	 System.out.println(board.get(3) + " , " + board.get(4) + " , " + board.get(5));
-   	 System.out.println(board.get(6) + " , " + board.get(7) + " , " + board.get(8));
+    public static boolean isTurn(){
+    	String webText = readFromURL(gameAddress + nextAddress + "id=" + gameID);
+    	boolean isTurn = false;
+   	 	print("          Starting new game with link:");
+   	 	print("          " + gameAddress + nextAddress + "id=" + gameID);
+   	 	
+   	 	JSONObject JSONWebText = new JSONObject(webText);
+   	 	
+   	 	if(JSONWebText.has("turn")){
+   	   	 	isTurn = JSONWebText.getString("turn").equalsIgnoreCase(turn);
+   	 	}
+   	 	
+   	 	return isTurn;
     }
     
     public static void commandLine(){
    	 	System.out.println("Select Position");
    	 	System.out.println(getEmptyPositions());
    	 	String position = in.nextLine();
-   	 	int numPosition = Integer.parseInt(position) - 1;
    	 
-   	 	System.out.println("Select Character to place at " + position);
-   	 	System.out.println("X or O");
-   	 	String character = in.nextLine();
-   	 
-   	 	int numCharacter = 0;
-   	 	if(character.equalsIgnoreCase("X")){
-   		 	numCharacter = 1;
-   	 	}
-   	 	else if(character.equalsIgnoreCase("O")){
-   		 	numCharacter = 2;
-   	 	}
-   	 	else{
-   		 	System.out.println("Invalid Move, Start Over");
-   		 	commandLine();
-   	 	}
-   	 	board.set(numPosition, numCharacter);
-   	 	printBoard();
+   	 	place(position);
+
+   	 	while()
+   	 	
    	 	commandLine();
     }
     

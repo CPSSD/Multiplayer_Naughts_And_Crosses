@@ -25,11 +25,10 @@ public class NaughtsAndCrossesClient {
     public static String nextAddress = "next?";		//TODO: change to next once jennifer updates server side
     public static String moveAddress = "move?";
     
+    public static boolean debug = false;
+    
     public static void main(String[] args){
-   	 	newGame("James");
-    	print(getBoard());
-    	place("1");
-    	print(getBoard());
+    	commandLine();
    	}
     
     public static void print(String out){
@@ -38,8 +37,10 @@ public class NaughtsAndCrossesClient {
     
      public static void newGame(String userName){
    	 	String webText = readFromURL(gameAddress + newGameAddress + "name=" + userName);
-   	 	print("          Starting new game with link:");
-   	 	print("          " + gameAddress + newGameAddress + "name=" + userName);
+   	 	if(debug){
+   	 		print("          Starting new game with link:");
+   	 		print("          " + gameAddress + newGameAddress + "name=" + userName);
+   	 	}
    	 	
    	 	JSONObject JSONWebText = new JSONObject(webText);
    	 	
@@ -59,8 +60,10 @@ public class NaughtsAndCrossesClient {
     
     public static String getBoard(){
     	JSONObject JSONWebText = new JSONObject(readFromURL(gameAddress + nextAddress + "id=" + gameID));
-   	 	print("          Retreiving board with link:");
-   	 	print("          " + gameAddress + nextAddress + "id=" + gameID);
+   	 	if(debug){
+    		print("          Retreiving board with link:");
+   	 		print("          " + gameAddress + nextAddress + "id=" + gameID);
+   	 	}
    	 	
     	if(JSONWebText.has("board")){
    	   	 	return String.valueOf(JSONWebText.get("board"));
@@ -104,28 +107,58 @@ public class NaughtsAndCrossesClient {
     public static boolean isTurn(){
     	String webText = readFromURL(gameAddress + nextAddress + "id=" + gameID);
     	boolean isTurn = false;
-   	 	print("          Starting new game with link:");
-   	 	print("          " + gameAddress + nextAddress + "id=" + gameID);
-   	 	
-   	 	JSONObject JSONWebText = new JSONObject(webText);
+    	if(debug){
+    		print("          Checking for turns with link:");
+       	 	print("          " + gameAddress + nextAddress + "id=" + gameID);
+    	}
+
+    	JSONObject JSONWebText = new JSONObject(webText);
    	 	
    	 	if(JSONWebText.has("turn")){
-   	   	 	isTurn = JSONWebText.getString("turn").equalsIgnoreCase(turn);
+   	   	 	isTurn = String.valueOf(JSONWebText.getInt("turn")).equalsIgnoreCase(turn);
    	 	}
    	 	
    	 	return isTurn;
     }
     
     public static void commandLine(){
-   	 	System.out.println("Select Position");
-   	 	System.out.println(getEmptyPositions());
-   	 	String position = in.nextLine();
-   	 
-   	 	place(position);
-
-   	 	while()
+    	print("Enter a username:");
+		String userName = in.nextLine();
+   	 	print("Welcome " + userName.toUpperCase());
    	 	
-   	 	commandLine();
+   	 	print("would you like debug mode enabled? (Y/N)");
+   	 	String Debug = in.nextLine();
+   	 	
+   	 	if(Debug.equalsIgnoreCase("y")){
+   	 		debug = true;
+   	 	}
+   	 	
+   	 	newGame(userName);
+   	 	
+   	 	game();
+    }
+    public static void game(){
+    	print("Select Position");
+   	 	print(getEmptyPositions());
+   	 	String position = in.nextLine();
+	   	place(position);
+
+   	 	double startTime = System.currentTimeMillis();
+		double curTime = 0;
+		
+		boolean isTurn = false;
+		
+		while (!isTurn) {
+			curTime = System.currentTimeMillis();
+			if (curTime - startTime > 1000.0) {
+				print("TICKING...");
+				startTime = curTime;
+				isTurn = isTurn();
+			}
+		}
+		
+   	 	print("TICKED");
+   	 	game();
     }
     
     public static String readFromURL(String url){

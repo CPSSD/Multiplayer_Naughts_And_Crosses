@@ -152,8 +152,8 @@ public class NaughtsAndCrossesClient {
 			curTime = System.currentTimeMillis();
 			if (curTime - startTime > 1000.0) {
 				print("TICKING...");
-				startTime = curTime;
 				isTurn = isTurn();
+				startTime = curTime;
 			}
 		}
 		

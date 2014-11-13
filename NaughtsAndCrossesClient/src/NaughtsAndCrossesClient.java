@@ -22,7 +22,7 @@ public class NaughtsAndCrossesClient {
     public static String gameAddress = "http://cpssd5-web.computing.dcu.ie/TicTacToeWeb/";
 
     public static String newGameAddress = "newGame?";
-    public static String nextAddress = "nextMove?";		//TODO: change to next once jennifer updates server side
+    public static String nextAddress = "next?";		//TODO: change to next once jennifer updates server side
     public static String moveAddress = "move?";
     
     public static void main(String[] args){

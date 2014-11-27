@@ -1,7 +1,9 @@
 package com.genesis.tictactoe;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 
@@ -35,10 +37,17 @@ public class ImageLoader {
 
 	public static BufferedImage getImage(String location) {
 		try {
-			return ImageIO.read(Frame.class.getResource(location));
+			URL image = Frame.class.getResource(location);
+			if(image != null){
+				System.out.println(image);
+				return ImageIO.read(image);
+			}
+			else{
+				System.out.println();
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return new BufferedImage(640, 480, 1);
 	}
 }

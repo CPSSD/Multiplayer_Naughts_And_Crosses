@@ -15,35 +15,33 @@ import edu.dcu.cpssd.tictactoe.core.ErrorType;
 import edu.dcu.cpssd.tictactoe.core.Game;
 import edu.dcu.cpssd.tictactoe.core.exceptions.GameException;
 
-@WebServlet(name = "move", urlPatterns = { "/move" })
-public class Move extends HttpServlet {
+@WebServlet(name = "endGame", urlPatterns = { "/endGame" })
+public class EndGame extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public Move() {
+	public EndGame() {
 		super();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		try {
 			String secret = request.getParameter("secret");
-			String position = request.getParameter("position");
+
+			if (secret == null || secret.equals("")) {
+				throw new GameException(ErrorType.MISSING_PARAMETER_IN_REQUEST);
+			}
 
 			Game game = Game.getGameBySecret(secret);
-			if (game == null) {
-				throw new GameException(ErrorType.OTHER_ERROR);
+			if (game == null || game.isOver) {
+				throw new GameException(ErrorType.NO_SUCH_GAME);
 			}
-			game.move(position, secret);
+			game.exitGame(secret);
 
 			JSONObject responseObject = new JSONObject().put("status", "okay");
 			writeResponse(response, responseObject);
-
-		} catch (GameException ge) {
-			System.out.println(ge.getMessage());
-			ge.printStackTrace();
-			writeResponse(response, ge.getErrorType());
+		} catch (GameException e) {
+			writeResponse(response, e.getErrorType());
 		}
-
 	}
 
 	private void writeResponse(HttpServletResponse response, JSONObject responseObject) throws IOException {

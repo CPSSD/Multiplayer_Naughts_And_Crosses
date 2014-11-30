@@ -13,6 +13,7 @@ public class Frame {
 	public static Display display;
 
 	public static void main(String[] args) {
+		System.out.println ("\"");
 		if (args.length >= 1) {
 			GameScreen.name = args[0];
 		}

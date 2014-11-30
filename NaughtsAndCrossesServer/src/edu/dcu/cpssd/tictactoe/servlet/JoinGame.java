@@ -15,35 +15,44 @@ import edu.dcu.cpssd.tictactoe.core.ErrorType;
 import edu.dcu.cpssd.tictactoe.core.Game;
 import edu.dcu.cpssd.tictactoe.core.exceptions.GameException;
 
-@WebServlet(name = "move", urlPatterns = { "/move" })
-public class Move extends HttpServlet {
+@WebServlet(name = "joinGame", urlPatterns = { "/joinGame" })
+public class JoinGame extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public Move() {
+	public JoinGame() {
 		super();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		try {
-			String secret = request.getParameter("secret");
-			String position = request.getParameter("position");
+			String gameId = request.getParameter("id");
+			String name = request.getParameter("name");
+			String pin = request.getParameter("pin");
 
-			Game game = Game.getGameBySecret(secret);
+			Game game = Game.getGameById(gameId);
+			System.out.println(gameId);
 			if (game == null) {
 				throw new GameException(ErrorType.OTHER_ERROR);
 			}
-			game.move(position, secret);
-
-			JSONObject responseObject = new JSONObject().put("status", "okay");
+			
+			if (game.isPrivate && !game.isFull) {
+				if (pin != null && game.getPin().equals(pin)) {
+					game.addPlayer(name, Game.generateSecret());
+				} else {
+					throw new GameException(ErrorType.MISSING_PARAMETER_IN_REQUEST);
+				}
+			} else if(!game.isFull){
+				game.addPlayer(name, Game.generateSecret());
+			} else {
+				throw new GameException(ErrorType.GAME_FULL);
+			}
+			
+			JSONObject responseObject = new JSONObject().put("letter", game.getOtherLetter()).put("status", "okay").put("secret", game.secret[game.getOtherLetter() - 1]);
 			writeResponse(response, responseObject);
 
 		} catch (GameException ge) {
-			System.out.println(ge.getMessage());
-			ge.printStackTrace();
 			writeResponse(response, ge.getErrorType());
 		}
-
 	}
 
 	private void writeResponse(HttpServletResponse response, JSONObject responseObject) throws IOException {

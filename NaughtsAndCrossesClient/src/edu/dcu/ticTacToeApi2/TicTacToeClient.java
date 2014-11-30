@@ -37,7 +37,7 @@ public class TicTacToeClient {
 	public TicTacToeClient() {
 		this.serverConnector = new ServerConnector();
 	}
-	
+
 	public TicTacToeClient(ServerConnector serverConnector) {
 		this.serverConnector = serverConnector;
 	}
@@ -52,10 +52,10 @@ public class TicTacToeClient {
 				isPrivate);
 	}
 
-	public JSONObject startGame(String name, String description, char letter, boolean isPrivate,
+	public JSONObject startGame(String name, String description, String letter, String isPrivate,
 			String pin) throws IOException {
 		return serverConnector.getUrl(START_GAME_REQUEST_WITH_PIN_FORMAT, name, description,
-				letter, isPrivate ? '1' : '0', pin);
+				letter, isPrivate, pin);
 	}
 
 	public JSONObject getlistGames() throws IOException {

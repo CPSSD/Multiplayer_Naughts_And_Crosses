@@ -34,7 +34,7 @@ public class TicTacToeClientTest {
 
 	String name = "jenny";
 	String description = "new game";
-	String letter = "X";
+	String letter = "1";
 	String isPrivate = "1";
 	String name2 = "jenny";
 	String letter2 = "O";
@@ -92,8 +92,7 @@ public class TicTacToeClientTest {
 	@Test
 	public final void testMove() throws IOException {
 		JSONObject game1 = ticTacToeClient.move(secret, position);
-		// JSONObject game2 = ticTacToeClient.startGame(name2, description,
-		// letter2, isPrivate);
+
 		assertNotNull(game1);
 		// assertNotNull(game2);
 		verify(serverConnector).getUrl(eq(MOVE_REQUEST_FORMAT), eq(secret), eq(position));

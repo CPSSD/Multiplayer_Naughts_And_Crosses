@@ -104,22 +104,69 @@ public class TicTacToeMenu {
 		out.println("Do you want play private 1 for yes or O for not");
 		out.flush();
 		String isPrivate = in.readLine();
-
-		JSONObject response = client.startGame(name, description, letter, isPrivate);
-		out.println(response.toString());
+		out.println("Do you want to add a pin y/n");
 		out.flush();
+		String yesOrNot = in.readLine();
+		if (yesOrNot.equalsIgnoreCase("y")) {
+			out.println("enter pin:");
+			out.flush();
+			String pin = in.readLine();
+			JSONObject response = client.startGame(name, description, letter, isPrivate, pin);
+			out.println(response.toString());
+			out.flush();
+		} else {
+			JSONObject response = client.startGame(name, description, letter, isPrivate);
+			out.println(response.toString());
+			out.flush();
+		}
+		out.println("Do you want to see the menu again y/n");
+		out.flush();
+		String yesOrNotShowMenu = in.readLine();
+		if (yesOrNotShowMenu.equalsIgnoreCase("y")) {
+			showMenu();
+		}
+		if (yesOrNotShowMenu.equalsIgnoreCase("n")) {
+			System.out.println("just exit press ctrl+z");
+		} else {
+			System.out.println("OOOO option not available");
+		}
+
 	}
 
 	public void getVersion() throws IOException {
 		JSONObject response = client.getVersion();
 		out.println(response.toString());
 		out.flush();
+		out.println("Do you want to see the menu again y/n");
+		out.flush();
+		String yesOrNotShowMenu = in.readLine();
+		if (yesOrNotShowMenu.equalsIgnoreCase("y")) {
+			showMenu();
+		}
+		if (yesOrNotShowMenu.equalsIgnoreCase("n")) {
+			System.out.println("just exit press ctrl+z");
+		} else {
+			System.out.println("OOOO option not available");
+		}
+
 	}
 
 	public void getListGames() throws IOException {
 		JSONObject response = client.getlistGames();
 		out.println(response.toString());
 		out.flush();
+		out.println("Do you want to see the menu again y/n");
+		out.flush();
+		String yesOrNotShowMenu = in.readLine();
+		if (yesOrNotShowMenu.equalsIgnoreCase("y")) {
+			showMenu();
+		}
+		if (yesOrNotShowMenu.equalsIgnoreCase("n")) {
+			System.out.println("just exit press ctrl+z");
+		} else {
+			System.out.println("OOOO option not available");
+		}
+
 	}
 
 	public void showJoinGameMenu() throws IOException {
@@ -141,6 +188,18 @@ public class TicTacToeMenu {
 		JSONObject response = client.joinGame(id, name);
 		out.println(response.toString());
 		out.flush();
+		out.println("Do you want to see the menu again y/n");
+		out.flush();
+		String yesOrNotShowMenu = in.readLine();
+		if (yesOrNotShowMenu.equalsIgnoreCase("y")) {
+			showMenu();
+		}
+		if (yesOrNotShowMenu.equalsIgnoreCase("n")) {
+			System.out.println("just exit press ctrl+z");
+		} else {
+			System.out.println("OOOO option not available");
+		}
+
 	}
 
 	public void nextMenu() throws IOException {
@@ -151,6 +210,18 @@ public class TicTacToeMenu {
 		JSONObject response = client.next(secret);
 		out.println(response.toString());
 		out.flush();
+		out.println("Do you want to see the menu again y/n");
+		out.flush();
+		String yesOrNotShowMenu = in.readLine();
+		if (yesOrNotShowMenu.equalsIgnoreCase("y")) {
+			showMenu();
+		}
+		if (yesOrNotShowMenu.equalsIgnoreCase("n")) {
+			System.out.println("just exit press ctrl+z");
+		} else {
+			System.out.println("OOOO option not available");
+		}
+
 	}
 
 	public void move() throws IOException {
@@ -165,6 +236,18 @@ public class TicTacToeMenu {
 		JSONObject response = client.move(secret, position);
 		out.println(response.toString());
 		out.flush();
+		out.println("Do you want to see the menu again y/n");
+		out.flush();
+		String yesOrNotShowMenu = in.readLine();
+		if (yesOrNotShowMenu.equalsIgnoreCase("y")) {
+			showMenu();
+		}
+		if (yesOrNotShowMenu.equalsIgnoreCase("n")) {
+			System.out.println("just exit press ctrl+z");
+		} else {
+			System.out.println("OOOO option not available");
+		}
+
 	}
 
 	public void endGame() throws IOException {
@@ -176,5 +259,17 @@ public class TicTacToeMenu {
 		JSONObject response = client.endGame(secret);
 		out.println(response.toString());
 		out.flush();
+		out.println("Do you want to see the menu again y/n");
+		out.flush();
+		String yesOrNotShowMenu = in.readLine();
+		if (yesOrNotShowMenu.equalsIgnoreCase("y")) {
+			showMenu();
+		}
+		if (yesOrNotShowMenu.equalsIgnoreCase("n")) {
+			System.out.println("just exit press ctrl+z");
+		} else {
+			System.out.println("OOOO option not available");
+		}
+
 	}
 }

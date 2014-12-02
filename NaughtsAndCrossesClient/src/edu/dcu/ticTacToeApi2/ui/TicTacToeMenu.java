@@ -9,36 +9,60 @@ import java.util.Scanner;
 import org.json.JSONObject;
 
 import edu.dcu.ticTacToeApi2.TicTacToeClient;
-
+/**
+ * Creates a general menu that allows to play the client.
+ * @author Jennifer
+ *
+ */
 public class TicTacToeMenu {
 	private final BufferedReader in;
 	private final PrintWriter out;
 
 	private final TicTacToeClient client;
 
+	/**
+	 * Menu constructor used to test 
+	 * @param client client object
+	 * @param inMock the input string 
+	 * @param out    the output string 
+	 */
 	public TicTacToeMenu(final TicTacToeClient client, final BufferedReader inMock,
 			final PrintWriter out) {
 		this.client = client;
 		this.in = inMock;
 		this.out = out;
 	}
-
+	/**
+	 * Menu constructor
+	 * @param client
+	 * @throws IOException
+	 */
 	public TicTacToeMenu(final TicTacToeClient client) throws IOException {
 		this.client = client;
 		this.in = new BufferedReader(new InputStreamReader(System.in));
 		this.out = new PrintWriter(System.out);
 	}
 
+	/**
+	 * Menu constructor with no parameters 
+	 * @throws IOException
+	 */
 	public TicTacToeMenu() throws IOException {
 		this(new TicTacToeClient());
 	}
-
+	/**
+	 * TicTacToe Menu constructor that accept a buffer as a parameter
+	 * @param in
+	 */
 	public TicTacToeMenu(BufferedReader in) {
 		this.in = in;
 		this.out = new PrintWriter(System.out);
 		this.client = new TicTacToeClient();
 	}
-
+	/**
+	 * Class that show all menu options 
+	 * @throws IOException
+	 */
 	public void showMenu() throws IOException {
 		boolean exitOfMenu = false;
 
@@ -89,7 +113,10 @@ public class TicTacToeMenu {
 			}
 		} while (exitOfMenu);
 	}
-
+	/**
+	 * Show the start game menu
+	 * @throws IOException
+	 */
 	public void showStartGameMenu() throws IOException {
 		out.println("enter your user name: ");
 		out.flush();
@@ -104,10 +131,8 @@ public class TicTacToeMenu {
 		out.println("Do you want play private 1 for yes or O for not");
 		out.flush();
 		String isPrivate = in.readLine();
-		out.println("Do you want to add a pin y/n");
-		out.flush();
-		String yesOrNot = in.readLine();
-		if (yesOrNot.equalsIgnoreCase("y")) {
+
+		if (isPrivate.equals("1")) {
 			out.println("enter pin:");
 			out.flush();
 			String pin = in.readLine();
@@ -132,7 +157,10 @@ public class TicTacToeMenu {
 		}
 
 	}
-
+	/**
+	 * Show the version game
+	 * @throws IOException
+	 */
 	public void getVersion() throws IOException {
 		JSONObject response = client.getVersion();
 		out.println(response.toString());
@@ -151,6 +179,10 @@ public class TicTacToeMenu {
 
 	}
 
+	/**
+	 * Show a list of games
+	 * @throws IOException
+	 */
 	public void getListGames() throws IOException {
 		JSONObject response = client.getlistGames();
 		out.println(response.toString());
@@ -168,7 +200,10 @@ public class TicTacToeMenu {
 		}
 
 	}
-
+	/**
+	 * Show join game menu
+	 * @throws IOException
+	 */
 	public void showJoinGameMenu() throws IOException {
 		String id;
 		String name;
@@ -181,13 +216,19 @@ public class TicTacToeMenu {
 		out.println("Please enter name:");
 		out.flush();
 		name = in.readLine();
-		out.println("Do you want to add personal pin: press y/n");
-		out.println("enter pin: (just 4 decimal digits)");
+		out.println("if pin, enter pin: ");
 		out.flush();
 		pin = in.readLine();
-		JSONObject response = client.joinGame(id, name);
-		out.println(response.toString());
-		out.flush();
+		if (pin == null || pin.isEmpty()) {
+			JSONObject response = client.joinGame(id, name);
+			out.println(response.toString());
+			out.flush();
+		} else {
+			JSONObject response = client.joinGame(id, name, pin);
+			out.println(response.toString());
+			out.flush();
+		}
+
 		out.println("Do you want to see the menu again y/n");
 		out.flush();
 		String yesOrNotShowMenu = in.readLine();
@@ -201,7 +242,10 @@ public class TicTacToeMenu {
 		}
 
 	}
-
+	/**
+	 * 
+	 * @throws IOException
+	 */
 	public void nextMenu() throws IOException {
 		out.println("enter your secret game");
 		out.flush();
@@ -224,6 +268,10 @@ public class TicTacToeMenu {
 
 	}
 
+	/***
+	 * show if the move option was fine
+	 * @throws IOException
+	 */
 	public void move() throws IOException {
 		out.println("move?");
 		out.println("enter secret: ");

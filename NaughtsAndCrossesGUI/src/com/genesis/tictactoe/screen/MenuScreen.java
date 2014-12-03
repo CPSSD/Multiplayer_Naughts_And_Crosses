@@ -7,11 +7,12 @@ import java.awt.Rectangle;
 import com.genesis.tictactoe.Display;
 import com.genesis.tictactoe.Frame;
 import com.genesis.tictactoe.ImageLoader;
+import com.genesis.tictactoe.game.TicTacToeData;
 
 public class MenuScreen extends Screen {
 
 	int x = 0;
-	public Rectangle playButton, hostButton, joinButton, exitButton, settingsButton, title;
+	public Rectangle title, username, playButton, hostButton, joinButton, exitButton;
 
 	public MenuScreen() {
 		super("Menu");
@@ -19,15 +20,14 @@ public class MenuScreen extends Screen {
 
 	public void init() {
 		title = new Rectangle((int) (Frame.fWidth / 2 - 96 * 2), 40, (int) (96 * 4), 120);
-		
+
 		int buttonX = 240;
 		int buttonY = 50;
 		
 		playButton = new Rectangle(Frame.fWidth/4 - buttonX/2	, 200, buttonX, buttonY);
-		hostButton = new Rectangle(3*Frame.fWidth/4 -buttonX/2	, 200, buttonX, buttonY); //
-		joinButton = new Rectangle(Frame.fWidth/4 - buttonX/2	, 260, buttonX, buttonY); //
-		settingsButton = new Rectangle(3*Frame.fWidth/4 -buttonX/2	, 260, buttonX, buttonY); 
-		exitButton = new Rectangle(Frame.fWidth/2 -buttonX/2	, 360, buttonX, buttonY); 
+		hostButton = new Rectangle(3*Frame.fWidth/4 -buttonX/2	, 200, buttonX, buttonY); 
+		joinButton = new Rectangle(Frame.fWidth/4 - buttonX/2	, 310, buttonX, buttonY);
+		exitButton = new Rectangle(3*Frame.fWidth/4 -buttonX/2	, 310, buttonX, buttonY); 
 	}
 
 	public void render() {
@@ -38,17 +38,21 @@ public class MenuScreen extends Screen {
 		Display.dbGraphics.drawImage(ImageLoader.buttonBackground, playButton.x, playButton.y, playButton.width, playButton.height, null);
 		Display.dbGraphics.drawImage(ImageLoader.buttonBackground, hostButton.x, hostButton.y, hostButton.width, hostButton.height, null);
 		Display.dbGraphics.drawImage(ImageLoader.buttonBackground, joinButton.x, joinButton.y, joinButton.width, joinButton.height, null);
-		Display.dbGraphics.drawImage(ImageLoader.buttonBackground, settingsButton.x, settingsButton.y, settingsButton.width, settingsButton.height, null);
 		Display.dbGraphics.drawImage(ImageLoader.buttonBackground, exitButton.x, exitButton.y, exitButton.width, exitButton.height, null);
-		
+
 		Display.dbGraphics.setColor(Color.white);
 		Display.dbGraphics.setFont(new Font("Arial", Font.BOLD, 16));
 		
 		drawString("Play Random Game  "	, playButton.x + (int)(playButton.width/2)			, playButton.y + (playButton.height/2));
 		drawString("Host Private Game"	, hostButton.x + (int)(hostButton.width/2)			, hostButton.y + (hostButton.height/2));
 		drawString("Join Private Game"	, joinButton.x + (int)(joinButton.width/2)			, joinButton.y + (joinButton.height/2));
-		drawString("Settings"			, settingsButton.x + (int)(settingsButton.width/2)	, settingsButton.y + (settingsButton.height/2));
 		drawString("Exit"				, exitButton.x + (int)(exitButton.width/2)			, exitButton.y + (exitButton.height/2));
+
+		Display.dbGraphics.setColor(Color.white);
+		Display.dbGraphics.setFont(new Font("Arial", Font.BOLD, 16));
+		String welcome = "Welcome " + TicTacToeData.username;
+		drawString(welcome, Frame.fWidth - 8*welcome.length(), Frame.fHeight - 40);
+
 		
 		init();
 	}
@@ -68,9 +72,6 @@ public class MenuScreen extends Screen {
 		}
 		if (p.intersects(joinButton)) {
 			System.out.println("joinButton");
-		}
-		if (p.intersects(settingsButton)) {
-			System.out.println("settings");
 		}
 		if (p.intersects(exitButton)) {
 			System.exit(0);

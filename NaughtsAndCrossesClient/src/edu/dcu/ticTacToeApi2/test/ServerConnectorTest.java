@@ -1,6 +1,6 @@
 package edu.dcu.ticTacToeApi2.test;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 import java.io.IOException;
 
@@ -8,22 +8,25 @@ import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
-import edu.dcu.ticTacToeApi2.ConnectionFactory;
 import edu.dcu.ticTacToeApi2.ServerConnector;
 
 public class ServerConnectorTest {
-	private static final String TEST_URL = "http://";
-	@Mock
-	private ConnectionFactory connectionFactoryMock;
+	/**
+	 * http://68.14.247.232/
+	 */
+	private static final String START_GAME_JENNY_REQUEST_ERROR= "startGame?name=jenny";//"http://cpssd5-web.computing.dcu.ie/";
+	private static final String START_GAME_REQUEST = "startGame?name=jen&description=des&letter=1&private=1&pin=1";
+	private static final String JOIN_GAME_REQUEST = "joinGame?id=3&name=jenni";
+	private static final String END_GAME_REQUEST = "endGame?secret=ABCDEF53y438976";
+	public static final String MOVE_GAME_REQUEST = "move?secret=567489&position=2";
+	private static final String STATUS = "status";
+	
 	private ServerConnector serverConnector;
 	
 	@Before
 	public void setUp() throws Exception {
-		MockitoAnnotations.initMocks(this);
-		serverConnector = new ServerConnector(connectionFactoryMock);
+		this.serverConnector = new ServerConnector();
 	}
 
 	@After
@@ -32,8 +35,17 @@ public class ServerConnectorTest {
 
 	@Test
 	public final void testGetFromURL() throws IOException {
-		JSONObject jsonObject = serverConnector.getUrl(TEST_URL);
-		assertNotNull(jsonObject);
+		JSONObject startGameJennyResponseError = serverConnector.getUrl(START_GAME_JENNY_REQUEST_ERROR);
+		JSONObject startGameResponse = serverConnector.getUrl(START_GAME_REQUEST);
+		JSONObject joinGameResponse = serverConnector.getUrl(JOIN_GAME_REQUEST);
+		JSONObject endGameResponse = serverConnector.getUrl(END_GAME_REQUEST);
+		JSONObject moveGameResponse = serverConnector.getUrl(MOVE_GAME_REQUEST);
+		assertNotNull(startGameJennyResponseError);
+		assertEquals("error", startGameJennyResponseError.getString(STATUS));
+		assertEquals("okay", startGameResponse.getString(STATUS));
+		assertEquals("error", joinGameResponse.getString(STATUS));
+		assertEquals("error", endGameResponse.getString(STATUS));
+		assertEquals("error", moveGameResponse.getString(STATUS));
 	}
 	
 }

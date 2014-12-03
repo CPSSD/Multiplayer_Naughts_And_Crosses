@@ -1,0 +1,23 @@
+Testsuite: edu.dcu.ticTacToeApi2.test.EndToEndTest
+Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.543 sec
+------------- Standard Output ---------------
+Which operation do you want?
+start game press: s
+get version game press: v
+print list of games press: l
+join to a game press: j
+end Game press: e
+next: n
+move: m
+enter your user name: 
+Enter a small description
+Which letter do you want to choose X or O
+Choose 1 for X and 2 for O
+Do you want play private 1 for yes or O for not
+startGame?name=jenny&description=new game&letter=X&private=12WW253y438976
+{"message":"Missing parameter in request","status":"error","code":101}
+Do you want to see the menu again y/n
+OOOO option not available
+------------- ---------------- ---------------
+
+Testcase: testEndToEnd took 0.541 sec

@@ -24,16 +24,16 @@ import edu.dcu.ticTacToeApi2.ui.TicTacToeMenu;
 public class TicTacToeMenuTest {
 	JSONObject version = new JSONObject("{\"status\":\"okay\",\"major\":\"2\",\"minor\":\"1\"}");
 	JSONObject startGameResponse = new JSONObject(
-			"{\"status\":\"okay\",\"id\":\"game-23\",\"secret\":\"12WW253y438976\",\"leter\":\"1\"} ");
+			"{\"status\":\"okay\",\"id\":\"game-23\",\"secret\":\"12WW253y438976\",\"leter\":\"1\",\"pin\":\"4567\"}");
 	JSONObject startGameResponse2 = new JSONObject(
-			"{\"status\":\"okay\",\"id\":\"game-24\",\"secret\":\"ABCDEF53y438976\",\"leter\":\"2\"} ");
+			"{\"status\":\"okay\",\"id\":\"game-24\",\"secret\":\"ABCDEF53y438976\",\"leter\":\"2\"}");
 
 	JSONObject listGame = new JSONObject(
-			"{\"status\":\"okay\",\"id\":\"game-23\",\"secret\":\"12WW253y438976\",\"leter\":\"1\"} ");
+			"{\"status\":\"okay\",\"id\":\"game-23\",\"secret\":\"12WW253y438976\",\"leter\":\"1\"}");
 	JSONObject joinGame = new JSONObject(
-			"{\"status\":\"okay\",\"secret\":\"12WW253y438976\",\"leter\":\"1\"} ");
+			"{\"status\":\"okay\",\"secret\":\"12WW253y438976\",\"leter\":\"1\"}");
 	JSONObject next = new JSONObject(
-			"{\"status\":\"okay\",\"board\":[0,0,0,0,1,0,0,0,0],\"turn\":\"2\"} ");
+			"{\"status\":\"okay\",\"board\":[0,0,0,0,1,0,0,0,0],\"turn\":\"2\"}");
 	JSONObject move = new JSONObject("{\"status\":\"okay\"}");
 	JSONObject endGame = new JSONObject("{\"status\":\"okay\"}");
 
@@ -46,6 +46,7 @@ public class TicTacToeMenuTest {
 	String id = "game-23";
 	String secret = "12WW253y438976";
 	String position = "8";
+	String pin = "4567";
 
 	@Mock
 	private BufferedReader inMock;
@@ -60,7 +61,7 @@ public class TicTacToeMenuTest {
 		MockitoAnnotations.initMocks(this);
 		this.ticTacToeMenu = new TicTacToeMenu(clientMock, inMock, outMock);
 		when(clientMock.getVersion()).thenReturn(version);
-		when(clientMock.startGame(name, description, letter, isPrivate)).thenReturn(
+		when(clientMock.startGame(name, description, letter, isPrivate, pin)).thenReturn(
 				startGameResponse);
 		when(clientMock.startGame(name2, description, letter2, isPrivate)).thenReturn(
 				startGameResponse2);
@@ -106,7 +107,7 @@ public class TicTacToeMenuTest {
 	public final void testGetVersion() throws IOException {
 		when(inMock.readLine()).thenReturn("v");
 		ticTacToeMenu.showMenu();
-		verify(outMock, times(9)).println(any(String.class));
+		verify(outMock, times(10)).println(any(String.class));
 
 	}
 
@@ -114,7 +115,7 @@ public class TicTacToeMenuTest {
 	public final void testGetListGames() throws IOException {
 		when(inMock.readLine()).thenReturn("l");
 		ticTacToeMenu.showMenu();
-		verify(outMock, times(9)).println(any(String.class));
+		verify(outMock, times(10)).println(any(String.class));
 
 	}
 
@@ -128,7 +129,7 @@ public class TicTacToeMenuTest {
 	@Test
 	public final void testJoinGameWrongParameter() throws IOException {
 		when(inMock.readLine()).thenReturn("k").thenReturn("s").thenReturn(name).thenReturn(description)
-		.thenReturn(letter).thenReturn(isPrivate);
+		.thenReturn(letter).thenReturn(isPrivate).thenReturn(pin);
 		ticTacToeMenu.showMenu();
 		verify(outMock).println("kis not a option, please try again");
 		verify(outMock, times(2)).println("Which operation do you want?");
@@ -146,7 +147,7 @@ public class TicTacToeMenuTest {
 	public final void testMoveMenu() throws IOException {
 		when(inMock.readLine()).thenReturn("m").thenReturn(secret).thenReturn(position);
 		ticTacToeMenu.showMenu();
-		verify(outMock, times(12)).println(any(String.class));
+		verify(outMock, times(13)).println(any(String.class));
 	}
 
 	@Test

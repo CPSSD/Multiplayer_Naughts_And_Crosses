@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.Scanner;
 
 import org.json.JSONObject;
@@ -123,12 +125,12 @@ public class TicTacToeMenu {
 		String name = in.readLine();
 		out.println("Enter a small description");
 		out.flush();
-		String description = in.readLine();
+		String description = URLEncoder.encode(in.readLine(), "utf-8");
 		out.println("Which letter do you want to choose X or O");
 		out.println("Choose 1 for X and 2 for O");
 		out.flush();
 		String letter = in.readLine();
-		out.println("Do you want play private 1 for yes or O for not");
+		out.println("Do you want to play private 1 for yes or O for not");
 		out.flush();
 		String isPrivate = in.readLine();
 

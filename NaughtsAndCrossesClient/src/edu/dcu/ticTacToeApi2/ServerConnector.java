@@ -7,6 +7,11 @@ import java.net.URL;
 
 import org.json.JSONObject;
 
+/**
+ * Creates a connection to the server given an URL
+ * @author Jennifer
+ *
+ */
 public class ServerConnector {
 	private static final String SERVER_ADDRESS = "http://cpssd5-web.computing.dcu.ie/";
 
@@ -20,6 +25,13 @@ public class ServerConnector {
 		this.connectionFactory = connectionFactory;
 	}
 
+	/**
+	 * Get url
+	 * @param urlFormat
+	 * @param args
+	 * @return
+	 * @throws IOException
+	 */
 	public JSONObject getUrl(String urlFormat, Object... args) throws IOException {
 		String urlString = String.format(urlFormat, args);
 		System.out.println(urlString);

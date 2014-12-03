@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<project name="TicTacToeApi2" basedir="." default="compile">
+	<property name="src" value="./src" />
+	<property name="junitpath" value="libs/junit-4.11.jar" />
+	<property name="hamcrestpath" value="libs/hamcrest-core-1.3.jar" />
+	<property name="mockitopath" value="libs/mockito-all-1.9.5.jar" />
+	<property name="jsonpath" value="libs/json-20140107.jar" />
+	<property name="classpath" value=".:${mockitopath}:${jsonpath}:${junitpath}:${hamcrestpath}" />
+	<property name="testclass" value="**/*Test.class" />
+	<property name="output" value="bin" />
+
+	<target name="init">
+		<mkdir dir="${output}" />
+	</target>
+	<target name="compile" depends="init, clean">
+		<javac destdir="${output}" includeantruntime="false">
+			<src path="${src}" />
+			<classpath path="${classpath}" />
+		</javac>
+	</target>
+
+	<target name="clean">
+		<delete>
+			<fileset dir="${output}">
+				<include name="*" />
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="test" depends="compile">
+		<junit>
+			<formatter type="plain" usefile="false" />
+			<formatter type="plain" />
+			<batchtest>
+				<fileset dir="${output}" includes="${testclass}" />
+			</batchtest>
+			<classpath>
+				<pathelement location="${output}" />
+				<pathelement path="${classpath}"/>
+			</classpath>
+		</junit>
+	</target>
+
+	<target name="run" depends="compile">
+		<java dir="${output}" classname="edu.dcu.ticTacToeApi2.ui.MainTicTacToe">
+			<classpath>
+				<pathelement location="${output}" />
+			</classpath>
+		</java>
+	</target>
+</project>

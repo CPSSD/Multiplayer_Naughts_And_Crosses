@@ -1,0 +1,22 @@
+Testsuite: edu.dcu.ticTacToeApi2.test.ConnectionFactoryTest
+Tests run: 1, Failures: 0, Errors: 1, Time elapsed: 0.115 sec
+
+Testcase: testCreateConnection took 0.09 sec
+	Caused an ERROR
+
+Cannot mock/spy class java.net.URL
+Mockito cannot mock/spy following:
+  - final classes
+  - anonymous classes
+  - primitive types
+org.mockito.exceptions.base.MockitoException: 
+Cannot mock/spy class java.net.URL
+Mockito cannot mock/spy following:
+  - final classes
+  - anonymous classes
+  - primitive types
+	at edu.dcu.ticTacToeApi2.test.ConnectionFactoryTest.setUp(Unknown Source)
+	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:32)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:424)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:138)
+

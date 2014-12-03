@@ -1,0 +1,18 @@
+Testsuite: edu.dcu.ticTacToeApi2.test.ServerConnectorTest
+Tests run: 1, Failures: 0, Errors: 1, Time elapsed: 0.019 sec
+------------- Standard Output ---------------
+http://
+------------- ---------------- ---------------
+
+Testcase: testGetFromURL took 0.018 sec
+	Caused an ERROR
+null
+java.lang.NullPointerException
+	at java.io.Reader.<init>(Unknown Source)
+	at java.io.InputStreamReader.<init>(Unknown Source)
+	at edu.dcu.ticTacToeApi2.ServerConnector.getUrl(Unknown Source)
+	at edu.dcu.ticTacToeApi2.test.ServerConnectorTest.testGetFromURL(Unknown Source)
+	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:32)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:424)
+	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:138)
+

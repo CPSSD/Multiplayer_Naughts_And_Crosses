@@ -10,7 +10,7 @@ public class ImageLoader {
 
 	public static boolean isLoaded = false;
 	public static BufferedImage[][] images;
-	public static BufferedImage boardBackground, titleLogo, curPlayerBackground, buttonBackground, findGameButton, tileBackground, background, playButton;
+	public static BufferedImage boardBackground, titleLogo, curPlayerBackground, buttonBackground, findGameButton, tileBackground, background, playButton, tick, tickBox;
 
 	public static void loadImages() {
 		images = new BufferedImage[4][1];
@@ -21,6 +21,9 @@ public class ImageLoader {
 		background = getImage("/background.png");
 		curPlayerBackground = getImage("/curPlayerBackground.png");
 		tileBackground = getImage("/tileBG.png");
+		tick = getImage("/tick.png");
+		tickBox = getImage("/tickBox.png");
+		
 		loadSpriteSheet(images, getImage("/images.png"), 4, 1, 96, 96);
 
 		isLoaded = true;

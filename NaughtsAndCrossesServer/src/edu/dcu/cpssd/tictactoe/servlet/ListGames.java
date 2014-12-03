@@ -9,41 +9,38 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
-import edu.dcu.cpssd.tictactoe.core.ErrorType;
 import edu.dcu.cpssd.tictactoe.core.Game;
 import edu.dcu.cpssd.tictactoe.core.exceptions.GameException;
 
-@WebServlet(name = "move", urlPatterns = { "/move" })
-public class Move extends HttpServlet {
+@WebServlet(name = "listGames", urlPatterns = { "/listGames" })
+public class ListGames extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public Move() {
+	public ListGames() {
 		super();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		try {
-			String secret = request.getParameter("secret");
-			String position = request.getParameter("position");
+			JSONObject responseObject = new JSONObject();
+			responseObject.put("status", "okay");
+			JSONArray jsonArray = new JSONArray();
 
-			Game game = Game.getGameBySecret(secret);
-			if (game == null) {
-				throw new GameException(ErrorType.OTHER_ERROR);
+			for (int i = 0; i < Game.games.size(); i++) {
+				Game g = Game.games.get(i);
+				if (g != null && (!g.isFull && !g.isOver)) {
+					jsonArray.put(g.getInfo());
+				}
 			}
-			game.move(position, secret);
+			responseObject.put("games", jsonArray);
 
-			JSONObject responseObject = new JSONObject().put("status", "okay");
 			writeResponse(response, responseObject);
-
-		} catch (GameException ge) {
-			System.out.println(ge.getMessage());
-			ge.printStackTrace();
-			writeResponse(response, ge.getErrorType());
+		} catch (GameException e) {
+			writeResponse(response, e.getErrorType());
 		}
-
 	}
 
 	private void writeResponse(HttpServletResponse response, JSONObject responseObject) throws IOException {

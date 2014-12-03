@@ -26,5 +26,9 @@ public class Screen {
 	public void pingServer() {
 		// Placeholder
 	}
+	
+	public void keyInput(String s){
+		// Deal With text input
+	}
 
 }

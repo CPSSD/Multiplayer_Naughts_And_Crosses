@@ -27,8 +27,9 @@ public class Display extends Canvas implements Runnable {
 		int tick = 0;
 
 		addMouseListener(new Controller());
+		addKeyListener(new Controller());
 		ImageLoader.loadImages();
-		screen = new MenuScreen();
+		screen = new LoginScreen();
 
 		running = true;
 		while (running) {

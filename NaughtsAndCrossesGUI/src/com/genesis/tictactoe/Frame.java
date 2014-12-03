@@ -13,13 +13,7 @@ public class Frame {
 	public static Display display;
 
 	public static void main(String[] args) {
-		if (args.length >= 1) {
-			GameScreen.name = args[0];
-		}
-
-		if (args.length >= 2) {
-			GameScreen.gameAddress = args[1];
-		}
+		System.out.println ("\"");
 		frame = new JFrame(title);
 		display = new Display();
 
@@ -32,5 +26,9 @@ public class Frame {
 
 		display.init();
 
+	}
+	
+	public static void print(String s){
+		System.out.println(s);
 	}
 }

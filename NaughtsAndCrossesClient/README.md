@@ -1,9 +1,8 @@
-##BracketMachine
 
 Compile Command Line,  
-Action       | Ant Command 
------------- | ------------- | ------------- 
-Compile      | javac edu.dcu.ticTacToeApi2.ui.MainTicTacToe.java
+Action |Ant Command 
+| ---- | ------- 
+Compile |javac edu.dcu.ticTacToeApi2.ui.MainTicTacToe.java
 Execute      | java edu.dcu.ticTacToeApi2.ui.MainTicTacToe.java
 Test         | `ant test`
 

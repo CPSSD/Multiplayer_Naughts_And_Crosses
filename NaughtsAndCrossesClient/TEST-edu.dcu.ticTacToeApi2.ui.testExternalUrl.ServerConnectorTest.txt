@@ -1,5 +1,5 @@
-Testsuite: edu.dcu.ticTacToeApi2.test.ServerConnectorTest
-Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.306 sec
+Testsuite: edu.dcu.ticTacToeApi2.ui.testExternalUrl.ServerConnectorTest
+Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.226 sec
 ------------- Standard Output ---------------
 startGame?name=jenny
 startGame?name=jen&description=des&letter=1&private=1&pin=1
@@ -8,4 +8,4 @@ endGame?secret=ABCDEF53y438976
 move?secret=567489&position=2
 ------------- ---------------- ---------------
 
-Testcase: testGetFromURL took 0.276 sec
+Testcase: testGetFromURL took 0.225 sec

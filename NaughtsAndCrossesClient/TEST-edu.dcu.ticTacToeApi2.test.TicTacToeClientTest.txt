@@ -1,7 +1,7 @@
 Testsuite: edu.dcu.ticTacToeApi2.test.TicTacToeClientTest
-Tests run: 4, Failures: 0, Errors: 0, Time elapsed: 0.053 sec
+Tests run: 4, Failures: 0, Errors: 0, Time elapsed: 0.512 sec
 
-Testcase: testOneMove took 0.042 sec
-Testcase: testMove took 0.002 sec
-Testcase: testNext took 0.002 sec
-Testcase: testJoinGame took 0.003 sec
+Testcase: testOneMove took 0.496 sec
+Testcase: testMove took 0.003 sec
+Testcase: testNext took 0.003 sec
+Testcase: testJoinGame took 0.005 sec

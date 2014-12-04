@@ -153,9 +153,9 @@ public class TicTacToeMenu {
 			showMenu();
 		}
 		if (yesOrNotShowMenu.equalsIgnoreCase("n")) {
-			System.out.println("just exit press ctrl+z");
+			System.out.println("bye");
 		} else {
-			System.out.println("OOOO option not available");
+			System.out.println("option not available");
 		}
 
 	}

@@ -13,9 +13,10 @@ import edu.dcu.ticTacToeApi2.ServerConnector;
 
 public class ServerConnectorTest {
 	/**
-	 * http://cpssd5-web.computing.dcu.ie/
+	 * Creates all possible request from http://cpssd5-web.computing.dcu.ie/
+	 * 
 	 */
-	private static final String START_GAME_JENNY_REQUEST_ERROR= "startGame?name=jenny";//"http://cpssd5-web.computing.dcu.ie/";
+	private static final String START_GAME_JENNY_REQUEST_ERROR= "startGame?name=jenny";
 	private static final String START_GAME_REQUEST = "startGame?name=jen&description=des&letter=1&private=1&pin=1";
 	private static final String JOIN_GAME_REQUEST = "joinGame?id=3&name=jenni";
 	private static final String END_GAME_REQUEST = "endGame?secret=ABCDEF53y438976";

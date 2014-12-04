@@ -8,6 +8,7 @@ import static org.mockito.Mockito.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.Scanner;
 
 import org.json.JSONObject;
@@ -24,7 +25,7 @@ import edu.dcu.ticTacToeApi2.ui.TicTacToeMenu;
 public class TicTacToeMenuTest {
 	JSONObject version = new JSONObject("{\"status\":\"okay\",\"major\":\"2\",\"minor\":\"1\"}");
 	JSONObject startGameResponse = new JSONObject(
-			"{\"status\":\"okay\",\"id\":\"game-23\",\"secret\":\"12WW253y438976\",\"leter\":\"1\",\"pin\":\"4567\"}");
+			"{\"status\":\"okay\",\"id\":\"game-23\",\"secret\":\"12WW253y438976\",\"leter\":\"1\"}");
 	JSONObject startGameResponse2 = new JSONObject(
 			"{\"status\":\"okay\",\"id\":\"game-24\",\"secret\":\"ABCDEF53y438976\",\"leter\":\"2\"}");
 
@@ -61,10 +62,11 @@ public class TicTacToeMenuTest {
 		MockitoAnnotations.initMocks(this);
 		this.ticTacToeMenu = new TicTacToeMenu(clientMock, inMock, outMock);
 		when(clientMock.getVersion()).thenReturn(version);
-		when(clientMock.startGame(name, description, letter, isPrivate, pin)).thenReturn(
+		when(clientMock.startGame(name, URLEncoder.encode(description, "utf-8"), letter, isPrivate, pin)).thenReturn(
 				startGameResponse);
-		when(clientMock.startGame(name2, description, letter2, isPrivate)).thenReturn(
-				startGameResponse2);
+		/*when(clientMock.startGame(name2, description, letter2, isPrivate)).thenReturn(
+				startGameResponse2);*/
+		when(clientMock.joinGame(id,name,pin)).thenReturn(joinGame);
 		when(clientMock.joinGame(id, name)).thenReturn(joinGame);
 		when(clientMock.getVersion()).thenReturn(version);
 		when(clientMock.next(secret)).thenReturn(next);
@@ -81,9 +83,9 @@ public class TicTacToeMenuTest {
 	@Test
 	public final void testShowMenu() throws IOException {
 		when(inMock.readLine()).thenReturn("s").thenReturn(name).thenReturn(description)
-				.thenReturn(letter).thenReturn(isPrivate);
+				.thenReturn(letter).thenReturn(isPrivate).thenReturn(pin);
 		ticTacToeMenu.showMenu();
-		verify(outMock, times(14)).println(any(String.class));
+		verify(outMock, times(16)).println(any(String.class));
 		verify(outMock).println("Which operation do you want?");
 		verify(outMock).println("start game press: s");
 		verify(outMock).println("get version game press: v");
@@ -97,7 +99,7 @@ public class TicTacToeMenuTest {
 	@Test
 	public final void testIfShowStartGameMenu() throws IOException {
 		when(inMock.readLine()).thenReturn("s").thenReturn(name).thenReturn(description)
-				.thenReturn(letter).thenReturn(isPrivate);
+				.thenReturn(letter).thenReturn(isPrivate).thenReturn(pin);
 		ticTacToeMenu.showMenu();
 		verify(outMock).println("Which operation do you want?");
 
@@ -121,7 +123,7 @@ public class TicTacToeMenuTest {
 
 	@Test
 	public final void testIfShowJoinGame() throws IOException {
-		when(inMock.readLine()).thenReturn("j").thenReturn(id).thenReturn(name);
+		when(inMock.readLine()).thenReturn("j").thenReturn(id).thenReturn(name).thenReturn(pin);
 		ticTacToeMenu.showMenu();
 		verify(outMock, times(13)).println(any(String.class));
 	}

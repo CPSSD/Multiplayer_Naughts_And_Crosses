@@ -1,5 +1,5 @@
 Testsuite: edu.dcu.ticTacToeApi2.ui.test.TicTacToeMenuTest
-Tests run: 9, Failures: 3, Errors: 4, Time elapsed: 0.104 sec
+Tests run: 9, Failures: 0, Errors: 4, Time elapsed: 0.138 sec
 ------------- Standard Output ---------------
 OOOO option not available
 OOOO option not available
@@ -8,112 +8,52 @@ OOOO option not available
 OOOO option not available
 ------------- ---------------- ---------------
 
-Testcase: testIfShowNextMenu took 0.034 sec
-Testcase: testJoinGameWrongParameter took 0.006 sec
+Testcase: testIfShowNextMenu took 0.064 sec
+Testcase: testJoinGameWrongParameter took 0.014 sec
 	Caused an ERROR
 null
 java.lang.NullPointerException
-	at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.showStartGameMenu(Unknown Source)
-	at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.showMenu(Unknown Source)
-	at edu.dcu.ticTacToeApi2.ui.test.TicTacToeMenuTest.testJoinGameWrongParameter(Unknown Source)
+	at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.showStartGameMenu(TicTacToeMenu.java:142)
+	at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.showMenu(TicTacToeMenu.java:84)
+	at edu.dcu.ticTacToeApi2.ui.test.TicTacToeMenuTest.testJoinGameWrongParameter(TicTacToeMenuTest.java:133)
 	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:32)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:424)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:138)
 
-Testcase: testIfShowStartGameMenu took 0.005 sec
+Testcase: testIfShowStartGameMenu took 0.008 sec
 	Caused an ERROR
 null
 java.lang.NullPointerException
-	at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.showStartGameMenu(Unknown Source)
-	at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.showMenu(Unknown Source)
-	at edu.dcu.ticTacToeApi2.ui.test.TicTacToeMenuTest.testIfShowStartGameMenu(Unknown Source)
+	at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.showStartGameMenu(TicTacToeMenu.java:142)
+	at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.showMenu(TicTacToeMenu.java:84)
+	at edu.dcu.ticTacToeApi2.ui.test.TicTacToeMenuTest.testIfShowStartGameMenu(TicTacToeMenuTest.java:101)
 	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:32)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:424)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:138)
 
-Testcase: testIfShowJoinGame took 0.004 sec
+Testcase: testIfShowJoinGame took 0.006 sec
 	Caused an ERROR
 null
 java.lang.NullPointerException
-	at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.showJoinGameMenu(Unknown Source)
-	at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.showMenu(Unknown Source)
-	at edu.dcu.ticTacToeApi2.ui.test.TicTacToeMenuTest.testIfShowJoinGame(Unknown Source)
+	at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.showJoinGameMenu(TicTacToeMenu.java:230)
+	at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.showMenu(TicTacToeMenu.java:96)
+	at edu.dcu.ticTacToeApi2.ui.test.TicTacToeMenuTest.testIfShowJoinGame(TicTacToeMenuTest.java:125)
 	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:32)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:424)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:138)
 
-Testcase: testGetListGames took 0.018 sec
-	FAILED
-
-outMock.println(<any>);
-Wanted 9 times:
--> at edu.dcu.ticTacToeApi2.ui.test.TicTacToeMenuTest.testGetListGames(Unknown Source)
-But was 10 times. Undesired invocation:
--> at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.getListGames(Unknown Source)
-
-junit.framework.AssertionFailedError: 
-outMock.println(<any>);
-Wanted 9 times:
--> at edu.dcu.ticTacToeApi2.ui.test.TicTacToeMenuTest.testGetListGames(Unknown Source)
-But was 10 times. Undesired invocation:
--> at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.getListGames(Unknown Source)
-
-	at edu.dcu.ticTacToeApi2.ui.test.TicTacToeMenuTest.testGetListGames(Unknown Source)
-	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:32)
-	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:424)
-	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:138)
-
-Testcase: testShowMenu took 0.008 sec
+Testcase: testGetListGames took 0.012 sec
+Testcase: testShowMenu took 0.007 sec
 	Caused an ERROR
 null
 java.lang.NullPointerException
-	at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.showStartGameMenu(Unknown Source)
-	at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.showMenu(Unknown Source)
-	at edu.dcu.ticTacToeApi2.ui.test.TicTacToeMenuTest.testShowMenu(Unknown Source)
+	at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.showStartGameMenu(TicTacToeMenu.java:142)
+	at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.showMenu(TicTacToeMenu.java:84)
+	at edu.dcu.ticTacToeApi2.ui.test.TicTacToeMenuTest.testShowMenu(TicTacToeMenuTest.java:85)
 	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:32)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:424)
 	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:138)
 
-Testcase: testMoveMenu took 0.007 sec
-	FAILED
-
-outMock.println(<any>);
-Wanted 12 times:
--> at edu.dcu.ticTacToeApi2.ui.test.TicTacToeMenuTest.testMoveMenu(Unknown Source)
-But was 13 times. Undesired invocation:
--> at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.move(Unknown Source)
-
-junit.framework.AssertionFailedError: 
-outMock.println(<any>);
-Wanted 12 times:
--> at edu.dcu.ticTacToeApi2.ui.test.TicTacToeMenuTest.testMoveMenu(Unknown Source)
-But was 13 times. Undesired invocation:
--> at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.move(Unknown Source)
-
-	at edu.dcu.ticTacToeApi2.ui.test.TicTacToeMenuTest.testMoveMenu(Unknown Source)
-	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:32)
-	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:424)
-	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:138)
-
-Testcase: testGetVersion took 0.007 sec
-	FAILED
-
-outMock.println(<any>);
-Wanted 9 times:
--> at edu.dcu.ticTacToeApi2.ui.test.TicTacToeMenuTest.testGetVersion(Unknown Source)
-But was 10 times. Undesired invocation:
--> at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.getVersion(Unknown Source)
-
-junit.framework.AssertionFailedError: 
-outMock.println(<any>);
-Wanted 9 times:
--> at edu.dcu.ticTacToeApi2.ui.test.TicTacToeMenuTest.testGetVersion(Unknown Source)
-But was 10 times. Undesired invocation:
--> at edu.dcu.ticTacToeApi2.ui.TicTacToeMenu.getVersion(Unknown Source)
-
-	at edu.dcu.ticTacToeApi2.ui.test.TicTacToeMenuTest.testGetVersion(Unknown Source)
-	at org.eclipse.ant.internal.launching.remote.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:32)
-	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.run(InternalAntRunner.java:424)
-	at org.eclipse.ant.internal.launching.remote.InternalAntRunner.main(InternalAntRunner.java:138)
-
+Testcase: testMoveMenu took 0.005 sec
+Testcase: testGetVersion took 0.005 sec
 Testcase: testIfShowEndGame took 0.005 sec

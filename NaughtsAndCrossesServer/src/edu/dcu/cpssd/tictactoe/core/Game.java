@@ -224,7 +224,7 @@ public class Game {
 	 */
 	public static Game getGameBySecret(String secret) {
 		for (int i = 0; i < games.size(); i++) {
-			if (games.get(i) != null && ((games.get(i).secret[0] != nulll &&games.get(i).secret[0].equals(secret)) || (games.get(i).secret[1] != null && games.get(i).secret[1].equals(secret)))) {
+			if (games.get(i) != null && ((games.get(i).secret[0] != null && games.get(i).secret[0].equals(secret)) || (games.get(i).secret[1] != null && games.get(i).secret[1].equals(secret)))) {
 				return games.get(i);
 			}
 		}

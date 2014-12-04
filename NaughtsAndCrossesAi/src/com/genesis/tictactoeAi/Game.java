@@ -41,7 +41,7 @@ public class Game {
 	 *            The letter of the AI.
 	 */
 	private void createGame(int letter) {
-		JSONObject game = Main.readFromUrl(gameIp + startGame + "name=" + name + "&description=\"" + description + "\"&letter=1&private=0");
+		JSONObject game = Main.readFromUrl(gameIp + startGame + "name=" + name + "&description=\"" + description + "\"&letter=" + letter + "&private=0");
 		if (game.getString("status").equals("okay")) {
 			secret = game.getString("secret");
 			this.letter = letter;
